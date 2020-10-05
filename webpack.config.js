@@ -6,17 +6,21 @@ const sveltePreprocess = require("svelte-preprocess")
 const ExtractCssChunks = require("extract-css-chunks-webpack-plugin")
 const preprocess = sveltePreprocess({ typescript: true })
 
-const mode = "development" // or "production"
+// "production" or "development" or "none" https://webpack.js.org/configuration/mode/
+let mode = "development"
 const isProductionMode = mode === "production"
 const dev = !isProductionMode
 
-
-module.exports = {
+const config = {
   mode,
   devtool: isProductionMode ? false : "source-map",
   devServer: {
     contentBase: "./public",
     hot: !isProductionMode,
+    historyApiFallback: {
+      index: '/index.html'                  // <----- THIS WORKS
+    },
+    index: 'index.html'
   },
   entry: {
     index: ["./src/main.ts"],
@@ -86,3 +90,8 @@ module.exports = {
     }),
   ],
 }
+
+module.exports = (env, argv) => {
+  mode = argv.mode || mode
+  return config;
+};
