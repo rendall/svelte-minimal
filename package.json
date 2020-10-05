@@ -17,8 +17,7 @@
   },
   "homepage": "https://github.com/rendall/svelte-minimal#readme",
   "dependencies": {
-    "page": "^1.11.6",
-    "sirv-cli": "^1.0.0"
+    "page": "^1.11.6"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^1.0.0",
