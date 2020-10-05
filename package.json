@@ -1,0 +1,32 @@
+{
+  "name": "svelte-minimal",
+  "version": "1.0.0",
+  "description": "Minimal svelte-based app with mobile and desktop layouts",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rendall/svelte-minimal.git"
+  },
+  "author": "Rendall",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rendall/svelte-minimal/issues"
+  },
+  "homepage": "https://github.com/rendall/svelte-minimal#readme",
+  "dependencies": {
+    "webpack": "^4.44.2"
+  },
+  "devDependencies": {
+    "@types/node": "^10.17.35",
+    "css-loader": "^4.2.2",
+    "extract-css-chunks-webpack-plugin": "^4.7.5",
+    "svelte-loader-hot": "^0.3.1",
+    "svelte-preprocess": "^4.3.2",
+    "ts-loader": "^8.0.4",
+    "typescript": "^4.0.3",
+    "webpack-cli": "^3.3.12"
+  }
+}
