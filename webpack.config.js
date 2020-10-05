@@ -18,7 +18,7 @@ module.exports = {
 		hot: !isProductionMode,
 	},
 	entry: {
-		bundle: ["./src/main.ts"],
+		index: ["./src/main.ts"],
 		style: ["./src/static/style.scss"],
 	},
 	resolve: {

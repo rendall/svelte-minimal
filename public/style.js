@@ -84,18 +84,32 @@
 /******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */,
-/* 1 */
+/******/ ({
+
+/***/ "./src/static/style.scss":
+/*!*******************************!*\
+  !*** ./src/static/style.scss ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by extract-css-chunks-webpack-plugin
+    if(false) { var cssReload; }
+  
+
+/***/ }),
+
+/***/ 1:
 /*!*************************************!*\
   !*** multi ./src/static/style.scss ***!
   \*************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-!(function webpackMissingModule() { var e = new Error("Cannot find module './src/static/style.scss'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+module.exports = __webpack_require__(/*! ./src/static/style.scss */"./src/static/style.scss");
 
 
 /***/ })
-/******/ ]);
+
+/******/ });
 //# sourceMappingURL=style.js.map
