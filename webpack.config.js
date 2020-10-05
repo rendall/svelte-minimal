@@ -17,6 +17,10 @@ module.exports = {
   devServer: {
     contentBase: "./public",
     hot: !isProductionMode,
+    historyApiFallback: {
+      index: '/index.html'                  // <----- THIS WORKS
+    },
+    index: 'index.html'
   },
   entry: {
     index: ["./src/main.ts"],

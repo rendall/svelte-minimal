@@ -1,16 +1,66 @@
 <script lang="ts">
   import Page from "./components/Page.svelte";
+  import page from "page";
+  import { onMount, setContext } from "svelte";
+
   let topNav: HTMLElement;
-  let page: string = "home";
-  const onMenuToggle = () => topNav.classList.toggle("is-open");
-  const onNavClick = (nav: string) => () => {
-    onMenuToggle();
-    page = nav;
+  let main: HTMLElement;
+  let observer: IntersectionObserver;
+  let currPage: string = "home";
+
+  const onMenuToggle = (on?) => () => {
+    if (!topNav) return;
+    const force = on === undefined ? !topNav.classList.contains("is-open") : on;
+    topNav.classList.toggle("is-open", force);
   };
+
+  const closeMenu = onMenuToggle(false);
+
+  const setRoute = (pageName: string, route: string = `/${pageName}`) =>
+    page(route, () => {
+      currPage = pageName;
+      const element: HTMLElement = document.getElementById(pageName);
+      if (element) element.scrollIntoView();
+      closeMenu();
+    });
+
+  /** Triggered when the page scrolls into view */
+  const onPageChange = (set: IntersectionObserverEntry[]) => {
+    if (set.length === 0) return;
+    const e = set[0];
+    if (!e.isIntersecting) return;
+    const pageName = e.target.id;
+    const route = pageName === "home" ? "/" : `/${pageName}`;
+    const currUrl = new URL(window.location.href);
+
+    // This means that the user scrolled the new page into view
+    // not clicked, and so we need to add the page to the
+    // address bar and history
+    const isMismatch = currUrl.pathname !== route;
+    if (isMismatch) {
+      currPage = pageName
+      history.pushState(null, null, route);
+    }
+  };
+
+  onMount(() => {
+    setRoute("home", "/");
+    setRoute("about");
+    setRoute("options");
+    page.start();
+    const options = {
+      root: main,
+      rootMargin: "0px",
+      threshold: 1.0,
+    };
+    observer = new IntersectionObserver(onPageChange, options);
+    const pages = Array.from(document.querySelectorAll(".page"));
+    pages.forEach((p) => observer.observe(p));
+  });
 </script>
 
 <header>
-  <button on:click={onMenuToggle} id="menu-button"><svg
+  <button on:click={onMenuToggle(true)} id="menu-button"><svg
       xmlns="http://www.w3.org/2000/svg"
       height="24"
       viewBox="0 0 24 24"
@@ -18,7 +68,7 @@
       <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" /></svg></button>
   <h1>Svelte Minimal</h1>
   <nav bind:this={topNav} id="top-nav">
-    <button on:click={onMenuToggle} id="nav_close-button">
+    <button on:click={onMenuToggle(false)} id="nav_close-button">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         height="24"
@@ -30,24 +80,24 @@
       </svg>
     </button>
     <ul>
-      <li><button on:click={onNavClick('home')}>Home</button></li>
-      <li><button on:click={onNavClick('options')}>Options</button></li>
-      <li><button on:click={onNavClick('about')}>About</button></li>
+      <li><a class:is-selected={currPage === 'home'} href="/">Home</a></li>
+      <li>
+        <a
+          class:is-selected={currPage === 'options'}
+          href="/options">Options</a>
+      </li>
+      <li>
+        <a class:is-selected={currPage === 'about'} href="/about">About</a>
+      </li>
     </ul>
   </nav>
 </header>
 
-<main>
-  {#if page === 'home'}
-    <Page>Home</Page>
-  {/if}
-  {#if page === 'options'}
-    <Page>Options</Page>
-  {/if}
-  {#if page === 'about'}
-    <Page>About</Page>
-  {/if}
+<main bind:this={main}>
+  <Page id="home">Home</Page>
+  <Page id="options">Options</Page>
+  <Page id="about">About</Page>
 </main>
 <footer>
-  <p>Allow whimsy</p>
+  <p>allow whimsy</p>
 </footer>
