@@ -1,3 +1,68 @@
-h1 {
-  color: red;
+body,
+html {
+  padding: 0;
+  margin: 0;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+body {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  header {
+    height: 3rem;
+    background-color: lightgray;
+    height: fit-content;
+    display: flex;
+  }
+
+  nav#top-nav {
+    height: 100vh;
+    position: absolute;
+    width: calc(100vw - 1rem);
+    background-color: gray;
+    left: -100vw;
+
+    transition: left 0.5s;
+
+    &.is-open {
+      left: 0;
+    }
+  }
+
+  main {
+    flex-grow: 1;
+  }
+
+  footer {
+    height: fit-content;
+    background-color: lightgray;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  body {
+    header {
+      button#menu-button {
+        display: none;
+      }
+      nav#top-nav {
+        background-color: unset;
+        display: flex;
+        height: unset;
+        position: unset;
+        width: unset;
+        flex-grow: 1;
+
+        button#nav_close-button {
+          display: none;
+        }
+
+        ul {
+          align-items: center;
+          display: flex;
+          list-style: none;
+        }
+      }
+    }
+  }
 }
