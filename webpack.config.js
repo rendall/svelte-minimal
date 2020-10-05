@@ -8,6 +8,7 @@ const preprocess = sveltePreprocess({ typescript: true })
 
 const mode = "development" // or "production"
 const isProductionMode = mode === "production"
+const dev = !isProductionMode
 
 
 module.exports = {
@@ -40,17 +41,14 @@ module.exports = {
 				use: {
 					loader: "svelte-loader-hot",
 					options: {
+						dev,
 						preprocess,
 						// NOTE emitCss: true is currently not supported with HMR
 						emitCss: isProductionMode,
 						hotReload: !isProductionMode,
 						hotOptions: {
 							noPreserveState: false,
-							noPreserveStateKey: "@!hmr",
-							noReload: false,
-							optimistic: false,
-							acceptAccessors: true,
-							acceptNamedExports: true,
+							optimistic: true,
 						},
 					},
 				},
