@@ -12,77 +12,77 @@ const dev = !isProductionMode
 
 
 module.exports = {
-	mode,
-	devtool: isProductionMode ? false : "source-map",
-	devServer: {
-		contentBase: "./public",
-		hot: !isProductionMode,
-	},
-	entry: {
-		index: ["./src/main.ts"],
-		style: ["./src/static/style.scss"],
-	},
-	resolve: {
-		alias: {
-			svelte: path.resolve("node_modules", "svelte"),
-		},
-		extensions: [".mjs", ".js", ".svelte", ".ts"],
-		mainFields: ["svelte", "browser", "module", "main"],
-	},
-	output: {
-		path: __dirname + "/public",
-		filename: "[name].js",
-		chunkFilename: "[name].[id].js",
-	},
-	module: {
-		rules: [
-			{
-				test: /\.svelte$/,
-				use: {
-					loader: "svelte-loader-hot",
-					options: {
-						dev,
-						preprocess,
-						// NOTE emitCss: true is currently not supported with HMR
-						emitCss: isProductionMode,
-						hotReload: !isProductionMode,
-						hotOptions: {
-							noPreserveState: false,
-							optimistic: true,
-						},
-					},
-				},
-			},
-			{
-				test: /\.(sa|sc|c)ss$/,
-				use: [
-					{
-						loader: ExtractCssChunks.loader,
-						options: { hmr: !isProductionMode },
-					},
-					"css-loader",
-					"sass-loader",
-				],
-			},
-			{ test: /\.ts$/, use: "ts-loader" },
-			{
-				test: /\.(woff(2)?|ttf|eot|svg|otf)(\?v=\d+\.\d+\.\d+)?$/,
-				use: [
-					{
-						loader: "file-loader",
-						options: {
-							name: "[path][name].[ext]",
-							context: "./src/static"
-						},
-					},
-				],
-			},
-		],
-	},
-	plugins: [
-		new ExtractCssChunks({
-			filename: "[name].css",
-			chunkFilename: "[id].css",
-		}),
-	],
+  mode,
+  devtool: isProductionMode ? false : "source-map",
+  devServer: {
+    contentBase: "./public",
+    hot: !isProductionMode,
+  },
+  entry: {
+    index: ["./src/main.ts"],
+    style: ["./src/static/style.scss"],
+  },
+  resolve: {
+    alias: {
+      svelte: path.resolve("node_modules", "svelte"),
+    },
+    extensions: [".mjs", ".js", ".svelte", ".ts"],
+    mainFields: ["svelte", "browser", "module", "main"],
+  },
+  output: {
+    path: __dirname + "/public",
+    filename: "[name].js",
+    chunkFilename: "[name].[id].js",
+  },
+  module: {
+    rules: [
+      {
+        test: /\.svelte$/,
+        use: {
+          loader: "svelte-loader-hot",
+          options: {
+            dev,
+            preprocess,
+            // NOTE emitCss: true is currently not supported with HMR
+            emitCss: isProductionMode,
+            hotReload: !isProductionMode,
+            hotOptions: {
+              noPreserveState: false,
+              optimistic: true,
+            },
+          },
+        },
+      },
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          {
+            loader: ExtractCssChunks.loader,
+            options: { hmr: !isProductionMode },
+          },
+          "css-loader",
+          "sass-loader",
+        ],
+      },
+      { test: /\.ts$/, use: "ts-loader" },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg|otf)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[path][name].[ext]",
+              context: "./src/static"
+            },
+          },
+        ],
+      },
+    ],
+  },
+  plugins: [
+    new ExtractCssChunks({
+      filename: "[name].css",
+      chunkFilename: "[id].css",
+    }),
+  ],
 }
