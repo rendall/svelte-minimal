@@ -1,47 +1,29 @@
 # Svelte Minimal
 
-Minimalist boilerplate designed to be a barebones frontend start to almost any web application, but especially a Single Page Application (SPA)
+[![Dependencies Status](https://david-dm.org/rendall/svelte-minimal.svg)](https://david-dm.org/rendall/svelte-minimal)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8e5757d5-9c4b-4b7b-8a71-2751518c8dbc/deploy-status)](https://app.netlify.com/sites/svelte-minimal/deploys)
+
+Minimalist boilerplate designed to be a barebones frontend start to almost any web application, but especially a Single Page Application (SPA) and Progressive Web App (PWA)
 
 If you're building an application in *Svelte 3* but *Sapper* is not suited for your needs, this may save you a few hours to days of development time.  See how it looks and behaves at <https://svelte-minimal.netlify.app/>
 
 ## Features
 
 * SPA: Runs as a Single Page App
+* PWA: Incorporates service-worker and web manifest
 * Mobile and Desktop ready
 * Automated build: `npm run build` compiles and moves everything to `/public`
 * Painless development: `npm run frontend` opens a local server with hot module replacement (HMR)
 * Not opinionated: so barebones that you can easily modify, add or remove almost anything without breaking it
 * 100 Score in Lighthouse! (Well, not hard, tbh, given how minimalist this really is. But still! A good start)
 
-### Anti-Features (just to be clear)
-
-* Back-button breaks in Chrome desktop quite frequently. Not sure what's going on, there
-  * It's definitely an artifact of the scrolling-style navigation, so if you jettison that, you're safe
-  * If you know why that's happening, please let me know!
-* Presented "as is"
-  * Caveat Emptor
-  * Let the buyer beware
-  * What you see is what you get
-* Support is also minimalist:
-  * I'll fix what's broke. If a feature listed here is not working, please submit an issue
-  * I'll gladly consider your pull request or feature suggestion, but the virtue of this project is that it's *minimalist*
-  * I'll be mean to you if you're demanding or clueless
-  * But I'll be nice to you if you're helpful and kind
-* Do not expect care with backwards-compatibility
-  * Once you begin building with it, consider it a separate project
-
 ## Usage
 
-* Have basic knowledge of *Svelte 3* and frontend application development in general
-* Put static files (e.g. images, fonts, html files) in `/static` and subdirectories thereof
+* Have basic knowledge of [*Svelte 3*](https://svelte.dev/) and frontend application development in general
+* Put static files (e.g. images, fonts, html files) in `/static` and any of its subdirectories
 * Develop in `/src` directory: `.svelte`, `.ts/.js`, `.scss/.css`
 * `npm run frontend` will crank up a local server so you can see your changes immediately
 * Files you want associated with the project but not tracked by git can be put in `/RAW`
-
-## Roadmap
-
-* Progressive Web App (PWA): service worker and web-app manifest
-* Perhaps another forked project: more opinionated, with state management
 
 ## Tech stack
 
