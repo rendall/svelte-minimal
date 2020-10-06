@@ -4,6 +4,8 @@
   "description": "Minimal svelte-based app with mobile and desktop layouts",
   "main": "index.js",
   "scripts": {
+    "prebuild": "npx rimraf public && mkdir public && npx cpx \"static/**/*\" public --verbose",
+    "build": "npx webpack",
     "frontend": "webpack-dev-server --open"
   },
   "repository": {
@@ -22,8 +24,10 @@
   "devDependencies": {
     "@tsconfig/svelte": "^1.0.0",
     "@types/node": "^10.17.35",
+    "cpx": "^1.5.0",
     "css-loader": "^4.2.2",
     "extract-css-chunks-webpack-plugin": "^4.7.5",
+    "rimraf": "^3.0.2",
     "sass": "^1.26.11",
     "sass-loader": "^10.0.2",
     "svelte": "^3.0.0",
