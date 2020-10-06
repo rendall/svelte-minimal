@@ -80,7 +80,7 @@ then
 
 Some people and resources made this go much more quickly. If you contribute, you also will be listed here!
 
-* [rixo](https://github.com/rixo/svelte-loader-hot) over at [svelte-loader-hot](https://github.com/rixo/svelte-loader-hot) is kind and responsive, and his pioneering work on this made the *hot loading* part of this possible now rather than next year
+* [rixo](https://github.com/rixo/) over at [svelte-loader-hot](https://github.com/rixo/svelte-loader-hot) is kind and responsive, and his pioneering work on this made the *hot loading* part of this possible now rather than next year
 * routing in *Svelte 3* is as-yet a bit immature, and [this article](https://codechips.me/svelte-routing-with-page-js-part-1/) by [codechips](https://github.com/codechips) helped speed me along the path
 * [VisionMedia](https://github.com/visionmedia) created the router [pagejs](https://visionmedia.github.io/page.js/) that just worked out of the box
 * Icons are from <https://material.io/resources/icons/>
