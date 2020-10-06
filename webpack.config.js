@@ -6,25 +6,21 @@ const sveltePreprocess = require("svelte-preprocess")
 const ExtractCssChunks = require("extract-css-chunks-webpack-plugin")
 const preprocess = sveltePreprocess({ typescript: true })
 
-// "production" or "development" or "none" https://webpack.js.org/configuration/mode/
-let mode = "development"
-const isProductionMode = mode === "production"
-const dev = !isProductionMode
 
-const config = {
+const config = (mode, isProductionMode) => ({
   mode,
-  devtool: isProductionMode ? false : "source-map",
+  devtool: isProductionMode? false : "source-map", 
   devServer: {
     contentBase: "./public",
     hot: !isProductionMode,
     historyApiFallback: {
-      index: '/index.html'                  // <----- THIS WORKS
+      index: '/index.html'  
     },
     index: 'index.html'
   },
   entry: {
     index: ["./src/main.ts"],
-    style: ["./src/static/style.scss"],
+    style: ["./src/styles/style.scss"],
   },
   resolve: {
     alias: {
@@ -45,7 +41,7 @@ const config = {
         use: {
           loader: "svelte-loader-hot",
           options: {
-            dev,
+            dev:!isProductionMode,
             preprocess,
             // NOTE emitCss: true is currently not supported with HMR
             emitCss: isProductionMode,
@@ -89,9 +85,11 @@ const config = {
       chunkFilename: "[id].css",
     }),
   ],
-}
+})
 
 module.exports = (env, argv) => {
-  mode = argv.mode || mode
-  return config;
+  // mode is "production" or "development" or "none" https://webpack.js.org/configuration/mode/
+  const mode = argv.mode || "development"
+  console.info(`Webpack compile mode is "${mode}"`)
+  return config(mode);
 };
