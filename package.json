@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "prebuild": "npx rimraf public && mkdir public && npx cpx \"static/**/*\" public --verbose",
-    "build": "npx webpack",
+    "build": "npx webpack --mode=production",
     "frontend": "webpack-dev-server --open"
   },
   "repository": {
