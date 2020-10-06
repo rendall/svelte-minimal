@@ -4,7 +4,7 @@
   "description": "Minimal svelte-based app with mobile and desktop layouts",
   "main": "index.js",
   "scripts": {
-    "prebuild": "npx rimraf public && mkdir public && npx cpx \"static/**/*\" public --verbose",
+    "prebuild": "npx rimraf public && mkdir public && npx cpx \"static/**/*\" public --verbose && npx tsc -p tsconfig.sw.json --listEmittedFiles",
     "build": "npx webpack --mode=production",
     "frontend": "webpack-dev-server --open"
   },

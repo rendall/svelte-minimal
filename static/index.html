@@ -1,18 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset='utf-8'>
 	<meta name='viewport' content='width=device-width,initial-scale=1'>
-	<meta name="description" content="Minimalist starter frontend boilerplate for Svelte 3 web applications" >
+	<meta name="description" content="Minimalist starter frontend boilerplate for Svelte 3 web applications">
+	<meta name="theme-color" content="lightgray">
 
 	<title>Svelte Minimal</title>
 
-	<link rel='icon' type='image/png' href='/favicon.png'>
+	<link rel="manifest" href="/manifest.webmanifest">
 	<link rel='stylesheet' href='style.css'>
+	<link rel="apple-touch-icon" href="/images/touch/star192.png">
 
 	<script defer src='index.js'></script>
+	<script>
+		if ('serviceWorker' in navigator) {
+			window.addEventListener('load', () => {
+				navigator.serviceWorker.register('/service-worker.js');
+			});
+		}
+	</script>
 </head>
 
 <body>
+	<noscript>
+		[Content when user has turned off Javascript]
+	</noscript>
 </body>
+
 </html>
