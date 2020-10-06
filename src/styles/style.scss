@@ -4,11 +4,18 @@ html {
   margin: 0;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
+// <body> is a flex column comprised of <header><main><footer> tags
 body {
+  // This is the mobile version
+  // desktop mode is handled as a media-query below
   display: flex;
   height: 100vh;
   flex-direction: column;
+
   header {
+    // <header> is comprised of <button#menu-toggle><h1><nav#top-nav>
+    // its layout changes depending on browser window width
     background-color: lightgray;
     height: fit-content;
     display: flex;
@@ -18,6 +25,7 @@ body {
       margin: 0 1rem;
     }
 
+    // This is the mobile "sliding-side-bar" version
     nav#top-nav {
       background-color: darkgray;
       border-right: solid dimgray;
@@ -49,12 +57,14 @@ body {
         }
       }
 
+      // This is added to <nav#top-nav> when <button#menu-toggle> is clicked
       &.is-open {
         left: 0;
       }
     }
   }
 
+  // All presentation components (pages) should go in <main>
   main {
     flex-grow: 1;
     display: flex;
@@ -65,6 +75,7 @@ body {
     -webkit-overflow-scrolling: touch;
     touch-action: pan-x;
 
+    // Much of .page is devoted to scrolling and snapping
     .page {
       scroll-snap-align: start;
       background-color: lightgray;
@@ -77,14 +88,6 @@ body {
       transition: all 1s;
       flex-shrink: 0;
       width: 100vw;
-
-      &.outro {
-        transform: translate(50vw);
-      }
-
-      &.intro {
-        transform: translate(-50vw);
-      }
 
       h1 {
         margin: 0 1rem;
@@ -113,6 +116,7 @@ button#nav_close-button {
   align-items: center;
 }
 
+// This is the desktop version
 @media screen and (min-width: 900px) {
   body {
     header {
@@ -123,6 +127,8 @@ button#nav_close-button {
       button#menu-button {
         display: none;
       }
+      // nav#top-nav is changed quite drastically
+      // from a pop-in side-bar to an always-on header menu
       nav#top-nav {
         background-color: unset;
         display: flex;

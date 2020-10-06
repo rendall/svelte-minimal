@@ -11,11 +11,12 @@ If you're building an application in *Svelte 3* but *Sapper* is not suited for y
 * Automated build: `npm run build` compiles and moves everything to `/public`
 * Painless development: `npm run frontend` opens a local server with hot module replacement (HMR)
 * Not opinionated: so barebones that you can easily modify, add or remove almost anything without breaking it
+* 100 Score in Lighthouse! (Well, not hard, tbh, given how minimalist this really is. But still! A good start)
 
 ### Anti-Features (just to be clear)
 
 * Back-button breaks in Chrome desktop quite frequently. Not sure what's going on, there
-  * I'll continue to investigate
+  * It's definitely an artifact of the scrolling-style navigation, so if you jettison that, you're safe
   * If you know why that's happening, please let me know!
 * Presented "as is"
   * Caveat Emptor
@@ -82,4 +83,4 @@ Some people and resources made this go much more quickly. If you contribute, you
 * [rixo](https://github.com/rixo/svelte-loader-hot) over at [svelte-loader-hot](https://github.com/rixo/svelte-loader-hot) is kind and responsive, and his pioneering work on this made the *hot loading* part of this possible now rather than next year
 * routing in *Svelte 3* is as-yet a bit immature, and [this article](https://codechips.me/svelte-routing-with-page-js-part-1/) by [codechips](https://github.com/codechips) helped speed me along the path
 * [VisionMedia](https://github.com/visionmedia) created the router [pagejs](https://visionmedia.github.io/page.js/) that just worked out of the box
-* Icons are from <material.io/resources/icons/>
+* Icons are from <https://material.io/resources/icons/>
