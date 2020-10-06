@@ -60,7 +60,7 @@
 </script>
 
 <header>
-  <button on:click={onMenuToggle(true)} id="menu-button"><svg
+  <button on:click={onMenuToggle(true)} id="menu-button" aria-label="open navigation"><svg
       xmlns="http://www.w3.org/2000/svg"
       height="24"
       viewBox="0 0 24 24"
@@ -68,7 +68,7 @@
       <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" /></svg></button>
   <h1>Svelte Minimal</h1>
   <nav bind:this={topNav} id="top-nav">
-    <button on:click={onMenuToggle(false)} id="nav_close-button">
+    <button on:click={onMenuToggle(false)} id="nav_close-button" aria-label="close navigation">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         height="24"
