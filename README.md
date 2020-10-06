@@ -25,7 +25,9 @@ If you're building an application in *Svelte 3* but *Sapper* is not suited for y
   * I'll fix what's broke. If a feature listed here is not working, please submit an issue
   * I'll gladly consider your pull request or feature suggestion, but the virtue of this project is that it's *minimalist*
   * I'll be mean to you if you're demanding or clueless
-  * I'll be nice to you if you're helpful and kind
+  * But I'll be nice to you if you're helpful and kind
+* Do not expect care with backwards-compatibility
+  * Once you begin building with it, consider it a separate project
 
 ## Usage
 
@@ -79,3 +81,5 @@ Some people and resources made this go much more quickly. If you contribute, you
 
 * [rixo](https://github.com/rixo/svelte-loader-hot) over at [svelte-loader-hot](https://github.com/rixo/svelte-loader-hot) is kind and responsive, and his pioneering work on this made the *hot loading* part of this possible now rather than next year
 * routing in *Svelte 3* is as-yet a bit immature, and [this article](https://codechips.me/svelte-routing-with-page-js-part-1/) by [codechips](https://github.com/codechips) helped speed me along the path
+* [VisionMedia](https://github.com/visionmedia) created the router [pagejs](https://visionmedia.github.io/page.js/) that just worked out of the box
+* Icons are from <material.io/resources/icons/>
