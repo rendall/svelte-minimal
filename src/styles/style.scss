@@ -19,13 +19,15 @@ body {
     }
 
     nav#top-nav {
-      background-color: gray;
+      background-color: darkgray;
+      border-right: solid dimgray;
       height: 100vh;
-      left: calc(10rem - 100vw);
+      left: calc(9.8rem - 100vw);
       position: absolute;
       top: 0;
       transition: left 0.25s;
       width: calc(100vw - 10rem);
+
       ul {
         list-style: none;
         margin: 0;
@@ -65,8 +67,10 @@ body {
 
     .page {
       scroll-snap-align: start;
-      background-color: lightslategray;
-      border: solid;
+      background-color: lightgray;
+      border: solid darkgray;
+      border-top: solid dimgray;
+      border-bottom: solid #ddd;
       box-sizing: border-box;
       height: 100%;
       padding-top: 1rem;
@@ -97,10 +101,16 @@ body {
   }
 }
 
-button {
+button#menu-button,
+button#nav_close-button {
   appearance: unset;
   background-color: transparent;
   border: none;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media screen and (min-width: 900px) {
