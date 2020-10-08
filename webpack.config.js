@@ -7,7 +7,7 @@ const ExtractCssChunks = require("extract-css-chunks-webpack-plugin")
 const preprocess = sveltePreprocess({ typescript: true })
 
 
-const config = (mode, isProductionMode) => ({
+const config = (mode, isProductionMode = mode==="production") => ({
   mode,
   devtool: isProductionMode? false : "source-map", 
   devServer: {

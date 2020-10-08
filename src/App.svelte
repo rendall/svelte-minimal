@@ -61,7 +61,12 @@
       page(route, () => {
         currPage = pageName
         const element: HTMLElement = document.getElementById(pageName)
-        if (element) element.scrollIntoView()
+        // This timeout addresses a strange intermittent bug in Chrome wherein
+        // sometimes element.scrollIntoView would not fire on back-button or 
+        // forward-button press
+        setTimeout(() => {
+          if (element) element.scrollIntoView()
+        }, 1)
         closeMenu()
       })
 
