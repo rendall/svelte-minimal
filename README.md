@@ -1,6 +1,5 @@
 # Svelte Minimal
 
-[![Dependencies Status](https://david-dm.org/rendall/svelte-minimal.svg)](https://david-dm.org/rendall/svelte-minimal)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/8e5757d5-9c4b-4b7b-8a71-2751518c8dbc/deploy-status)](https://app.netlify.com/sites/svelte-minimal/deploys)
 
 Minimalist boilerplate designed to be a barebones frontend start to almost any web application, but especially a Single Page Application (SPA) and Progressive Web App (PWA)
