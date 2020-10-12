@@ -1,26 +1,28 @@
 /** @format */
 
 const path = require("path")
-// svelte-preprocess for in-line (i.e. inside .svelte files) TypeScript, SASS, &tc
 const sveltePreprocess = require("svelte-preprocess")
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractCssChunks = require("extract-css-chunks-webpack-plugin")
 const preprocess = sveltePreprocess({ typescript: true })
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 
-const config = (mode, isProductionMode = mode==="production") => ({
+const config = (mode, isProductionMode = mode === "production") => ({
   mode,
-  devtool: isProductionMode? false : "source-map", 
+  devtool: isProductionMode ? false : "source-map",
   devServer: {
     contentBase: "./public",
     hot: !isProductionMode,
     historyApiFallback: {
-      index: '/index.html'  
+      index: '/index.html'
     },
     index: 'index.html'
   },
   entry: {
     index: ["./src/main.ts"],
-    style: ["./src/styles/style.scss"],
+    "service-worker": "./src/service-worker.ts"
   },
   resolve: {
     alias: {
@@ -41,7 +43,7 @@ const config = (mode, isProductionMode = mode==="production") => ({
         use: {
           loader: "svelte-loader-hot",
           options: {
-            dev:!isProductionMode,
+            dev: !isProductionMode,
             preprocess,
             // NOTE emitCss: true is currently not supported with HMR
             emitCss: isProductionMode,
@@ -64,26 +66,33 @@ const config = (mode, isProductionMode = mode==="production") => ({
           "sass-loader",
         ],
       },
-      { test: /\.ts$/, use: "ts-loader" },
-      {
-        test: /\.(woff(2)?|ttf|eot|svg|otf)(\?v=\d+\.\d+\.\d+)?$/,
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              name: "[path][name].[ext]",
-              context: "./src/static"
-            },
-          },
-        ],
-      },
+      { test: /.*(?<!service-worker)\.ts$/, use: [{ loader: "ts-loader", options: { configFile: "tsconfig.json" } }] },
+      { test: /service-worker\.ts$/, use: [{ loader: "ts-loader", options: { configFile: "tsconfig.sw.json" } }] },
+      // {
+      //   // test: /\.(woff(2)?|ttf|eot|svg|otf)(\?v=\d+\.\d+\.\d+)?$/,
+      //   test: /.*/,
+      //   use: [
+      //     {
+      //       loader: "file-loader",
+      //       options: {
+      //         name: "[path][name].[ext]",
+      //         context: "./src/static"
+      //       },
+      //     },
+      //   ],
+      // },
     ],
   },
   plugins: [
+    //https://github.com/jantimon/html-webpack-plugin
+    new CleanWebpackPlugin({ verbose: true }),
     new ExtractCssChunks({
       filename: "[name].css",
       chunkFilename: "[id].css",
     }),
+    new HtmlWebpackPlugin({ title: "Svelte Minimal", scriptLoading:"defer" }),
+    new FaviconsWebpackPlugin({ logo:'./static/images/logo.png', inject:true, template: './static/index.html' }) // svg works too!
+
   ],
 })
 
